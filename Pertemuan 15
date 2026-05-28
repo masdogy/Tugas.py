@@ -1,0 +1,76 @@
+def shell_sort_nama(arr):
+    """
+    Mengurutkan list nama (string) secara abjad (ascending)
+    menggunakan algoritma Shell Sort.
+
+    Parameter:
+        arr (list): List string (nama) yang akan diurutkan.
+    """
+    n = len(arr)
+    gap = n // 2  # Inisialisasi gap awal
+
+    while gap > 0:
+        for i in range(gap, n):
+            temp = arr[i]  # Simpan elemen saat ini
+            j = i
+
+            # Geser elemen yang lebih besar (secara abjad) ke kanan
+            while j >= gap and arr[j - gap].lower() > temp.lower():
+                arr[j] = arr[j - gap]
+                j -= gap
+
+            arr[j] = temp  # Tempatkan elemen pada posisi yang benar
+
+        gap //= 2  # Kurangi gap
+
+
+def main():
+    print("=" * 45)
+    print("   PROGRAM SHELL SORT - PENGURUTAN NAMA")
+    print("=" * 45)
+
+    # Input jumlah nama
+    while True:
+        try:
+            jumlah = int(input("\nMasukkan jumlah nama yang ingin diurutkan: "))
+            if jumlah <= 0:
+                print("Jumlah nama harus lebih dari 0. Coba lagi.")
+            else:
+                break
+        except ValueError:
+            print("Input tidak valid. Masukkan angka bulat.")
+
+    # Input nama satu per satu
+    nama_list = []
+    print(f"\nMasukkan {jumlah} nama:")
+    for i in range(jumlah):
+        nama = input(f"  Nama ke-{i + 1}: ").strip()
+        while not nama:
+            print("  Nama tidak boleh kosong. Coba lagi.")
+            nama = input(f"  Nama ke-{i + 1}: ").strip()
+        nama_list.append(nama)
+
+    # Tampilkan list awal
+    print("\n" + "-" * 45)
+    print("List nama SEBELUM diurutkan:")
+    for i, nama in enumerate(nama_list, 1):
+        print(f"  {i}. {nama}")
+
+    # Salin list asli agar bisa ditampilkan perbandingan
+    nama_terurut = nama_list.copy()
+
+    # Jalankan Shell Sort
+    shell_sort_nama(nama_terurut)
+
+    # Tampilkan list setelah diurutkan
+    print("\nList nama SETELAH diurutkan (abjad):")
+    for i, nama in enumerate(nama_terurut, 1):
+        print(f"  {i}. {nama}")
+
+    print("\n" + "=" * 45)
+    print("Pengurutan selesai!")
+    print("=" * 45)
+
+
+if __name__ == "__main__":
+    main()
