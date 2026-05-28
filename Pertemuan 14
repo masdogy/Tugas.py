@@ -1,1 +1,25 @@
+def bubble_sort_nama(peserta):
+    n = len(peserta)
+    for i in range(n - 1):
+        swapped = False
+        for j in range(n - 1 - i):
+            if peserta[j].lower() > peserta[j + 1].lower():
+                peserta[j], peserta[j + 1] = peserta[j + 1], peserta[j]
+                swapped = True
+        if not swapped:
+            break
+    return peserta
 
+# Daftar nama peserta lomba
+daftar_peserta = [
+    "Nabil", "erhanif", "Sukri", "Akbar", "Sutan",
+    "ALbar", "Farhan", "Hana", "Ilham", "Dewi"
+]
+
+print("Daftar sebelum diurutkan:")
+print(daftar_peserta)
+
+bubble_sort_nama(daftar_peserta)
+
+print("\nDaftar setelah diurutkan (A-Z):")
+print(daftar_peserta)
